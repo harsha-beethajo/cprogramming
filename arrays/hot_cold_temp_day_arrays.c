@@ -3,8 +3,8 @@ int main()
 {
     float temp[7];
     int i;
-    int hottest;
-    int coldest;
+    int hottest = 0;
+    int coldest = 0;
     float sum = 0;
     float Avg;
     for (i = 0; i < 7; i++)
@@ -20,8 +20,7 @@ int main()
         printf("%.1f, ", temp[i]);
     }
 
-    hottest = 0;
-    coldest = 0;
+   
     for (i = 1; i < 7; i++)
     {
         if (temp[hottest] < temp[i])
