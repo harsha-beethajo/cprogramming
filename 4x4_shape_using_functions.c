@@ -1,7 +1,9 @@
 #include <stdio.h>
+#include <stdlib.h>
 // Function -1
 int n = 1;
-// int numbers[16] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
+int getkey(void);
+int numbers[16] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
 void F1()
 {
     printf("%c", 201);
@@ -47,8 +49,36 @@ void F4()
     printf("%c\n", 188);
 }
 
-int main()
+int getkey()
 {
-    F1(), F2(), F3(), F2(), F3(), F2(), F3(), F2(), F4();
+    int ch = getch();
+    if (ch == 0 || ch == 224)
+        ch = getch();
+
+    return ch;
+}
+
+// int main()
+// {
+    
+//     system("cls");
+//     F1(), F2(), F3(), F2(), F3(), F2(), F3(), F2(), F4();
+//     return 0;
+// }
+
+
+int main(void)
+{
+    system("cls");
+    int key=getkey();
+
+    while (key == 72 || key == 75 || key == 77 || key == 80)
+    { 
+        key = getkey();
+        system("cls");
+        F1(), F2(), F3(), F2(), F3(), F2(), F3(), F2(), F4();
+        n=1;
+    }
     return 0;
 }
+

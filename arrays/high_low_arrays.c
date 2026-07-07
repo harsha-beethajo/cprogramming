@@ -25,7 +25,7 @@ int main()
              high = grade[i];
         }
     }
-    for (i = 1; i < 7; i++)
+    for (i = 1; i < 5; i++)
     {
         if (low > grade[i])
         {
