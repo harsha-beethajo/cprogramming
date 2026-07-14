@@ -12,7 +12,7 @@ typedef struct
 My Credentials()
 {
     My details;
-   printf("Enter your name: ");
+    printf("Enter your name: ");
     gets(details.name);
     printf("Enter your Grade(A-F): ");
     gets(details.grade);
