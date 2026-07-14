@@ -7,6 +7,9 @@ typedef struct
     float grade;
 } My;
 
+
+
+
 int main()
 {
     My details = {"SRIHARHSA VARDHAN BEETHAJO", 180.34, 74.54, 91.2};
