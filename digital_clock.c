@@ -1,8 +1,8 @@
 #include <stdio.h>
 int main()
 {
-    int hrs = 11;
-    int min = 50;
+    int hrs = 9;
+    int min = 59;
     int sec = 57;
     system("cls");
 
