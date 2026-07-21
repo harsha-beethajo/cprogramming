@@ -119,10 +119,7 @@ int main()
         }
         printf("\nDo you want to continue? (y/n): ");
         scanf(" %c", &YN);
-        // if (YN == 'y')
-        //     continue;
-        // else if (YN == 'n')
-        //     break;
+
     }
 
     return 0;

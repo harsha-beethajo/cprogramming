@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <windows.h>
+#define count 4
 // Function -1
-int numbers[4][4] = {{1, 3, 2, 4}, {5, 7, 6, 8}, {9, 10, 11, 12}, {13, 14, 15, 0}};
+int numbers[4][4] = {{1, 15, 2, 14}, {5, 13, 6, 11}, {9, 10, 8, 12}, {7, 4, 3, 0}};
 int final_box[4][4] = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 0}};
 
 int j = 0;
@@ -94,21 +95,38 @@ void box()
 {
     F1(), F2(), F3(), F2(), F3(), F2(), F3(), F2(), F4();
 }
+int equal_arrays()
+{
 
-
+    for (int p = 0; p < count; p++)
+    {
+        for (int q = 0; q < count; q++)
+        {
+            if (final_box[p][q] != numbers[p][q])
+            {
+                // printf("%d ",numbers[p][q]);
+                return 0;
+            }
+        }
+    }
+    return 1;
+}
 
 int main()
 {
+    int moves = 0;
     int row0 = 3;
     int column0 = 3;
+
     hideCursor();
     system("cls");
     box();
+
     int key = getkey();
 
     while (key == 72 || key == 75 || key == 77 || key == 80)
     {
-
+        printf("MOVES: %d\n", moves);
         i = 0, j = 0, k = 0;
         key = getkey();
         if (key == 80 && row0 > 0 /*Move down*/)
@@ -133,17 +151,16 @@ int main()
             column0++;
         }
 
-        if (final_box == numbers)
-        {
-            // printf ("Success ");
-            // exit
-        }
-        // system("cls");
-        // printf("\033[2J\033[H");
         gotoxy(0, 0);
         box();
+        if (equal_arrays())
+        {
+            printf("congratulations! Solved\n");
+            break;
+        }
         fflush(stdout);
+        moves++;
     }
-
+    printf("\nTOTAL MOVES: %d\n", moves);
     return 0;
 }
