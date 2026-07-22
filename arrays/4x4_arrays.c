@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <windows.h>
+#include <conio.h>
 #define count 4
 // Function -1
 int numbers[4][4] = {{1, 15, 2, 14}, {5, 13, 6, 11}, {9, 10, 8, 12}, {7, 4, 3, 0}};
@@ -161,6 +162,6 @@ int main()
         fflush(stdout);
         moves++;
     }
-    printf("\nTOTAL MOVES: %d\n", moves);
+    printf("\nTOTAL MOVES: %d\n", moves+1);
     return 0;
 }
