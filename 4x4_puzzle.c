@@ -2,12 +2,42 @@
 #include <stdlib.h>
 #include <windows.h>
 #include <conio.h>
+#include <time.h>
 int i;
 int j;
 int k;
-int numbers[4][4] = {{1, 15, 2, 14}, {5, 13, 6, 11}, {9, 10, 8, 12}, {0, 4, 3, 7}};
+// int numbers[4][4] = {{1, 15, 2, 14}, {5, 13, 6, 11}, {9, 10, 8, 12}, {0, 4, 3, 7}};
+int numbers[4][4];
 int real_arr[4][4] = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 0}};
+void generateArray(int arr[4][4]);
 
+void generateArray(int arr2D[4][4])
+{
+    int arr[16];
+    for (int i = 0; i <= 15; i++)
+        arr[i] = i + 1;
+
+    srand(time(NULL));
+
+    // Fisher-Yates shuffle
+    for (int i = 15; i >= 0; i--)
+    {
+        int j = rand() % (i + 1);
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+    for (int i = 0; i < 16; i++)
+    {
+        if (arr[i] == 16)
+        {
+            arr2D[i / 4][i % 4] = 0;
+        }
+        else
+            arr2D[i / 4][i % 4] = arr[i];
+    }
+}
 void gotoxy(int x, int y)
 {
     COORD pos = {x, y};
@@ -78,6 +108,7 @@ void swap(int *a, int *b)
     *a = *b;
     *b = temp;
 }
+
 int main()
 {
     char move;
@@ -86,6 +117,9 @@ int main()
     int key;
     hideCursor();
     system("cls");
+    srand(time(NULL));
+    generateArray(numbers);
+
     dabba();
 
     for (j = 0; j < 4; j++)
@@ -143,10 +177,9 @@ int main()
                     column++;
                 }
                 break;
-            case 'F':
+            case 'e':
                 system("cls");
-                exit(0);
-                break;
+                exit(EXIT_SUCCESS);
             }
             // system("cls");
 

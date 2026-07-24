@@ -13,7 +13,7 @@ int main(void)
     {
         key = getkey();
         system("cls");
-        printf("Key = %d\n", key);
+        printf("Key = %c\n", key);
     }
     return 0;
 }
