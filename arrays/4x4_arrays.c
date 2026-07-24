@@ -4,7 +4,8 @@
 #include <conio.h>
 #define count 4
 // Function -1
-int numbers[4][4] = {{1, 15, 2, 14}, {5, 13, 6, 11}, {9, 10, 8, 12}, {7, 4, 3, 0}};
+// int numbers[4][4] = {1, 15, 2, 14, 5, 13, 6, 11, 9, 10, 8, 12, 7, 4, 3, 0};
+int numbers[4][4];
 int final_box[4][4] = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 0}};
 
 int j = 0;
@@ -24,6 +25,38 @@ void hideCursor(void)
     info.dwSize = 100;
     info.bVisible = FALSE;
     SetConsoleCursorInfo(h, &info);
+}
+
+void getRandomArray()
+{
+    int numbers[16];
+
+    // Fill the array with numbers 1 to 15
+    for (int i = 0; i <= 15; i++)
+    {
+        numbers[i] = i + 1;
+    }
+
+    // Seed the random number generator
+    srand(time(NULL));
+
+    // Fisher-Yates shuffle
+    for (int i = 15; i >= 0; i--)
+    {
+        int j = rand() % (i + 1);
+
+        // Swap arr[i] and arr[j]
+        int temp = numbers[i];
+        numbers[i] = numbers[j];
+        numbers[j] = temp;
+    }
+
+    // Print the shuffled numbers
+    printf("Shuffled numbers:\n");
+    for (int i = 0; i <= 15; i++)
+    {
+        printf("%d ", numbers[i]);
+    }
 }
 
 void F1()
@@ -94,6 +127,7 @@ void swapping(int *a, int *b)
 
 void box()
 {
+   // getRandomArray();
     F1(), F2(), F3(), F2(), F3(), F2(), F3(), F2(), F4();
 }
 int equal_arrays()
@@ -162,6 +196,6 @@ int main()
         fflush(stdout);
         moves++;
     }
-    printf("\nTOTAL MOVES: %d\n", moves+1);
+    printf("\nTOTAL MOVES: %d\n", moves + 1);
     return 0;
 }
