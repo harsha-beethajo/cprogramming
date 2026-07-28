@@ -84,27 +84,30 @@ int main()
     int row;
     int column;
     int key;
+    int no_of_moves=0;
     hideCursor();
     system("cls");
     dabba();
 
-    for (j = 0; j < 4; j++)
-    {
-        for (k = 0; k < 4; k++)
-        {
-            if (numbers[j][k] == 0)
-            {
-                row = j;
-                column = k;
-            }
-        }
-    }
-    printf("\n(%d,%d) is (row,column) for blank space", row, column);
+    
     while (1)
     {
+        for (j = 0; j < 4; j++)
+        {
+            for (k = 0; k < 4; k++)
+            {
+                if (numbers[j][k] == 0)
+                {
+                    row = j;
+                    column = k;
+                }
+            }
+        }
+        printf("\n(%d,%d) blank, \n num of moves= %d", row, column, no_of_moves);
         j = 0;
         move = getch();
         {
+            
             switch (move)
             {
 
@@ -152,7 +155,7 @@ int main()
 
             gotoxy(0, 0);
             dabba();
-
+            no_of_moves++;
             int count = 0; // first time if false, reset to 0.
             for (int p = 0; p < 4; p++)
             {
@@ -167,6 +170,7 @@ int main()
             if (count == 16)
             {
                 printf("\nGood job! The puzzle is solved...");
+                printf("\nNumber of Moves = %d", no_of_moves);
                 return 0;
             }
             fflush(stdout);

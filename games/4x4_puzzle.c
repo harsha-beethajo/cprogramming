@@ -6,38 +6,12 @@
 int i;
 int j;
 int k;
+
 // int numbers[4][4] = {{1, 15, 2, 14}, {5, 13, 6, 11}, {9, 10, 8, 12}, {0, 4, 3, 7}};
 int numbers[4][4];
 int real_arr[4][4] = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 0}};
 void generateArray(int arr[4][4]);
 
-void generateArray(int arr2D[4][4])
-{
-    int arr[16];
-    for (int i = 0; i <= 15; i++)
-        arr[i] = i + 1;
-
-    srand(time(NULL));
-
-    // Fisher-Yates shuffle
-    for (int i = 15; i >= 0; i--)
-    {
-        int j = rand() % (i + 1);
-        int temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
-    }
-
-    for (int i = 0; i < 16; i++)
-    {
-        if (arr[i] == 16)
-        {
-            arr2D[i / 4][i % 4] = 0;
-        }
-        else
-            arr2D[i / 4][i % 4] = arr[i];
-    }
-}
 void gotoxy(int x, int y)
 {
     COORD pos = {x, y};
@@ -111,10 +85,12 @@ void swap(int *a, int *b)
 
 int main()
 {
+    int moves = 0;
     char move;
     int row;
     int column;
     int key;
+
     hideCursor();
     system("cls");
     srand(time(NULL));
@@ -122,20 +98,22 @@ int main()
 
     dabba();
 
-    for (j = 0; j < 4; j++)
-    {
-        for (k = 0; k < 4; k++)
-        {
-            if (numbers[j][k] == 0)
-            {
-                row = j;
-                column = k;
-            }
-        }
-    }
-    printf("\n(%d,%d) is (row,column) for blank space", row, column);
     while (1)
     {
+
+        for (j = 0; j < 4; j++)
+        {
+            for (k = 0; k < 4; k++)
+            {
+                if (numbers[j][k] == 0)
+                {
+                    row = j;
+                    column = k;
+                }
+            }
+        }
+        printf("\n(%d,%d) is space\n", row, column);
+        printf("MOVES: %d", moves);
         j = 0;
         move = getch();
         {
@@ -148,6 +126,7 @@ int main()
                 {
                     swap(&numbers[row][column], &numbers[row + 1][column]);
                     row++;
+                    moves++;
                 }
 
                 break;
@@ -157,6 +136,7 @@ int main()
                 {
                     swap(&numbers[row][column], &numbers[row - 1][column]);
                     row--;
+                    moves++;
                 }
                 break;
             case 'd':
@@ -166,6 +146,7 @@ int main()
                     {
                         swap(&numbers[row][column], &numbers[row][column - 1]);
                         column--;
+                        moves++;
                     }
                 }
                 break;
@@ -175,6 +156,7 @@ int main()
                 {
                     swap(&numbers[row][column], &numbers[row][column + 1]);
                     column++;
+                    moves++;
                 }
                 break;
             case 'e':
@@ -182,27 +164,49 @@ int main()
                 exit(EXIT_SUCCESS);
             }
             // system("cls");
+        }
+        gotoxy(0, 0);
+        dabba();
 
-            gotoxy(0, 0);
-            dabba();
-
-            int count = 0; // first time if false, reset to 0.
-            for (int p = 0; p < 4; p++)
+        int count = 0; // first time if false, reset to 0.
+        for (int p = 0; p < 4; p++)
+        {
+            for (int q = 0; q < 4; q++)
             {
-                for (int q = 0; q < 4; q++)
+                if (numbers[p][q] == real_arr[p][q]) // [j][k] not allowed...
                 {
-                    if (numbers[p][q] == real_arr[p][q]) // [j][k] not allowed...
-                    {
-                        count++;
-                    }
+                    count++;
                 }
             }
-            if (count == 16)
-            {
-                printf("\nGood job! The puzzle is solved...");
-                return 0;
-            }
-            fflush(stdout);
+        }
+        if (count == 16)
+        {
+            printf("\nGood job! The puzzle is solved...");
+            printf("\nTotal moves: %d", moves);
+            break;
+        }
+
+        fflush(stdout);
+    }
+    int bestScore;
+    FILE *fp = fopen("puzzle_moves.txt", "r");
+
+    if (fp != NULL)
+    {
+        fscanf(fp, "%d", &bestScore);
+        fclose(fp);
+
+        if (bestScore > moves)
+        {
+            fp = fopen("puzzle_moves.txt", "w");
+            fprintf(fp, "%d", moves);
+            fclose(fp);
+            bestScore = moves;
+            printf("\nNew Best Score: %d\n", bestScore);
+        }
+        else
+        {
+            printf("\nBest Score: %d\n", bestScore);
         }
     }
 }

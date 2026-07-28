@@ -30,17 +30,9 @@ void generateRandom(int arr2D[4][4])
     printf("Shuffled numbers:\n");
     for (int i = 0; i < 16; i++)
     {
-       
-        if (arr[i] == 16)
-        {
-            arr2D[i / 4][i % 4] = 0;
-        }
-        else
-            arr2D[i / 4][i % 4] = arr[i];
-       
-            printf("%3d", arr2D[i / 4][i % 4]);
 
-            
+        arr2D[i / 4][i % 4] = (arr[i] == 16) ? 0 : arr[i];
+        printf("%3d", arr2D[i / 4][i % 4]);
     }
 }
 int main()
