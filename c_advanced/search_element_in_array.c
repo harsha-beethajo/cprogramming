@@ -15,9 +15,6 @@ int main()
     int arr[3] = {3, 7, 5};
     printf("Enter the number: ");
     scanf("%d", &num);
-    if (isElementFound(num, arr, 3) == 1)
-        printf("%2d : Element found!", num);
-    else
-    printf(" %2d : element not found", num);
+    (isElementFound(num, arr, 3) == 1) ? printf("%2d : Element found!", num) : printf(" %2d : element not found", num);
     return 0;
 }
