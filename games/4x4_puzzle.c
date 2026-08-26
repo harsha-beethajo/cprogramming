@@ -7,10 +7,8 @@ int i;
 int j;
 int k;
 
-// int numbers[4][4] = {{1, 15, 2, 14}, {5, 13, 6, 11}, {9, 10, 8, 12}, {0, 4, 3, 7}};
-int numbers[4][4];
+int numbers[4][4] = {{1, 15, 2, 14}, {5, 13, 6, 11}, {9, 10, 8, 12}, {0, 4, 3, 7}};
 int real_arr[4][4] = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 0}};
-void generateArray(int arr[4][4]);
 
 void gotoxy(int x, int y)
 {
@@ -93,8 +91,6 @@ int main()
 
     hideCursor();
     system("cls");
-    srand(time(NULL));
-    generateArray(numbers);
 
     dabba();
 
