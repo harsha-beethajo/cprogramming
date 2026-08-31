@@ -13,9 +13,9 @@ newsize is the additional bytes added (for realloc)
 int *myRealloc(int *srcblock, int oldsize, int newsize) //the return type is set to (int). only works for (int)
 {
    int *resultArr = (int*)malloc(newsize);
-   for (int i = 0; i < oldsize; i++)
+   for (int i = 0; i < oldsize; i++) // To copy byte by byte(not 4 bytes at once), oldsize is taken.
    {
-      resultArr[i] = srcblock[i];
+      resultArr[i] = srcblock[i]; 
    }
    return resultArr;
 
