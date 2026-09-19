@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 typedef struct
 {
     char name[50];
@@ -74,7 +75,7 @@ void readRecordFromFile()
             }
             if (flag == 0)
             {
-                system("cls");
+                system("clear");
                 printf("Student not found! Try again...\n\n");
                 continue;
             }

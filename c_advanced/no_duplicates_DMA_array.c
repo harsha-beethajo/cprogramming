@@ -30,5 +30,6 @@ int main()
    {
      printf("%d ",ArrWithoutDuplicates[i]);
    }
+   free(ArrWithoutDuplicates);
    return 0;
 }
