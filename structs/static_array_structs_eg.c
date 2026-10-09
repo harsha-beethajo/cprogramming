@@ -16,6 +16,7 @@ int main()
         scanf("%d",&HW[i].height);
         printf("\n");
     }
+    printf("====RESULTS====");
     for (i = 0; i < 5; i++)
     {
         printf("Person %d\n",i+1);
